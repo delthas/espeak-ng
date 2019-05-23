@@ -18,7 +18,7 @@ MKDIR=mkdir -p
 # -Wno-endif-labels : Needed to prevent warnings in ieee80.c.
 AM_CFLAGS = \
 	-Isrc/include -Isrc/include/compat -I src/ucd-tools/src/include \
-	-D_BSD_SOURCE -D_DEFAULT_SOURCE -D_POSIX_C_SOURCE=200112L \
+	-D_BSD_SOURCE -D_DEFAULT_SOURCE -D_POSIX_C_SOURCE=200112L -DLIBESPEAK_NG_EXPORT \
 	-Wno-endif-labels
 
 EXTRA_DIST=
@@ -135,7 +135,7 @@ espeak_ng_include_HEADERS = \
 
 lib_LTLIBRARIES += src/libespeak-ng.la
 
-src_libespeak_ng_la_LDFLAGS = -version-info $(SHARED_VERSION) -lpthread -lm \
+src_libespeak_ng_la_LDFLAGS = -version-info $(SHARED_VERSION) -lpthread -lm -no-undefined \
 	${PCAUDIOLIB_LIBS}
 
 src_libespeak_ng_la_CFLAGS = \
@@ -231,13 +231,13 @@ noinst_bin_PROGRAMS += tests/encoding.test
 tests_encoding_test_LDADD   = src/libespeak-ng.la
 tests_encoding_test_SOURCES = tests/encoding.c
 
-noinst_bin_PROGRAMS += tests/readclause.test
+# noinst_bin_PROGRAMS += tests/readclause.test
 
 tests_readclause_test_CFLAGS  = -Isrc/libespeak-ng ${AM_CFLAGS}
 tests_readclause_test_LDADD   = src/libespeak-ng-test.la
 tests_readclause_test_SOURCES = tests/readclause.c
 
-noinst_bin_PROGRAMS += tests/api.test
+# noinst_bin_PROGRAMS += tests/api.test
 
 tests_api_test_CFLAGS  = -Isrc/libespeak-ng ${AM_CFLAGS}
 tests_api_test_LDADD   = src/libespeak-ng-test.la

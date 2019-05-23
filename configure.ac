@@ -1,7 +1,7 @@
 AC_PREREQ([2.63])
 AC_INIT([eSpeak NG], [1.49.2], [https://github.com/espeak-ng/espeak-ng/issues], [espeak-ng], [https://github.com/espeak-ng/espeak-ng])
 AM_INIT_AUTOMAKE()
-LT_INIT
+LT_INIT([win32-dll])
 
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES])
 AM_SILENT_RULES([yes])
